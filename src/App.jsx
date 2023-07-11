@@ -1,8 +1,12 @@
+import AllGames from "./components/allgames";
+import "./App.css"
 function App() {
 
   return (
     <>
-      <h1>Tu kiedyś będzie projekt {`:)`}</h1>
+      
+      <AllGames />
+  
     </>
   )
 }
