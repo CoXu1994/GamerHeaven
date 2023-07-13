@@ -8,13 +8,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import { Drawer, ListItemButton, ListItemText } from '@mui/material';
 import { useState } from 'react';
+import SearchBar from './searchBar';
 
 
 
 export default function NavBar() {
   const  [open, toggleDrawer] = useState(false);
-  
-  
+
     return (
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="fixed" sx={{bgcolor: "black", borderBottom: "2px solid gray"}}>
@@ -53,9 +53,17 @@ export default function NavBar() {
                 </ListItemButton>
                 <ListItemButton>
                   <ListItemText primary="Kategorie" />    
-                  <Link style={{color: "transparent", textDecoration: "none",mr: 2, cursor: "pointer"}} to= "/">Go to categories</Link>       
+                  <Link style={{color: "transparent", textDecoration: "none",mr: 2, cursor: "pointer"}} to= "categories">Go to categories</Link>       
                 </ListItemButton>
                 <ListItemButton>
+                  <ListItemText primary="Sortowanie" />          
+                </ListItemButton>
+                <ListItemButton>
+                  <ListItemText primary="Filtrowanie" />          
+                </ListItemButton>
+                <ListItemButton>
+                <ListItemText primary="Szukaj" />
+                  <SearchBar />
                 </ListItemButton>
           
                 </Box>

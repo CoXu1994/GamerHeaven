@@ -61,12 +61,12 @@ function WishList() {
                 setOrderBy("name");
                 return setWishedGames(wishedGames => wishedGames.toReversed())
             }
-            if(sortType == "metaScore") {
-                setOrderBy("metaScore");
+            if(sortType == "metacritic") {
+                setOrderBy("metacritic");
                 return setWishedGames(wishedGames => wishedGames.toReversed())
             }  
          }
-
+         const [searchGame, setSearchGame] = useState("");     
 
 return (
 <>
@@ -74,14 +74,17 @@ return (
 
         
         <section style={{marginTop: 40}}>
-            <div style={{marginTop: 60, display: "flex", flexDirection: "column"}}>
+            <input style={{marginTop: 40}}type="text" value={searchGame} onChange={(event) => setSearchGame(event.target.value)} />
+            <div style={{marginTop: 20, marginBottom: 20, display: "flex", flexDirection: "column"}}>
                 <Button sx={{border: "1px solid gray", bgcolor: "rgba(0,0,0, .3)", color: "white"}} onClick = {() => sortResults('created_at')}>Data dodania</Button>
                 <Button sx={{border: "1px solid gray", bgcolor: "rgba(0,0,0, .3)", color: "white"}} onClick = {() => sortResults('name')}>Nazwa</Button>
-                <Button sx={{border: "1px solid gray", bgcolor: "rgba(0,0,0, .3)", color: "white"}} onClick = {() => sortResults('metaScore')}> Ocena Metacritic</Button>
+                <Button sx={{border: "1px solid gray", bgcolor: "rgba(0,0,0, .3)", color: "white"}} onClick = {() => sortResults('metacritic')}> Ocena Metacritic</Button>
             </div>
             {fetchError && (<p>{fetchError}</p>)}
             {wishedGames && (
-                wishedGames.map((game) => (
+                wishedGames
+                .filter((game) => game.name.toLowerCase().includes(searchGame))
+                .map((game) => (
 
                     <div key={game.id} style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
                         <div style = {{height: 30, marginBottom: 8}}>
