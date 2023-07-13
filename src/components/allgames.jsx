@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { getAllGamesApi, getBestRatedGamesApi, getNewGamesApi, getPlatformApi,/* getCategoryGamesApi */} from "../api/api";
-import { Button, Typography, selectClasses } from '@mui/material';
-import supabase from "../api/supaBase";
+import { Button, Typography} from '@mui/material';
 import { Link } from "react-router-dom";
-
+import { AddToWishList } from "./wishlistOperations";
 
 
 function AllGames() {
@@ -13,6 +12,8 @@ function AllGames() {
   const [platformPC, setPlatformPC] = useState([]);
   const [platformXbox, setPlatformXbox] = useState([]);
   const [platformPSN, setPlatformPSN] = useState([]);
+
+  const [searchGame, setSearchGame] = useState("");
 
   useEffect(() => {
     const randomPage = Math.floor(Math.random() * 20);
@@ -25,174 +26,51 @@ function AllGames() {
 
   }, [])
   console.log(games)
-  /// To trzeba bedzie jeszcze przeniesc
 
-  async function AddToWishList({name, background_image, metacritic}) {
-    
-    if(!name || !background_image || !metacritic) {
-        return "error -- U mising something"
-    
-    }
-    const {data, error} = await supabase
-        .from("wishlist")
-        .insert([{name: name, image: background_image, metacritic: metacritic}])
+    function jsxTemplate(data, headertxt) {
+
+        const filteredData = data.filter((game) => game.name.toLowerCase().includes(searchGame))
         
-        if (error) {
-            console.log("U missing something")
+        if (filteredData.length > 0) { 
+            return (
+                <>
+                    <Typography sx={{mt: 5, mb: 2, textShadow: "2px 4px 3px black"}} variant="h4" component="h2">
+                        {headertxt}
+                    </Typography>
+                    <section style={{display: "flex", gap: 10, overflow: "auto", margin: "3rem 0"}}>
+                        {filteredData.map((game) => (
+                                <div key={game.id} style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",}}>
+                                    <div style = {{height: 30, marginBottom: 8}}>
+                                        <Typography sx={{mb: 2, mt: 2, textShadow: "4px 6px 5px black", fontWeight: "bold", letterSpacing: 1}} variant="span" component="span">
+                                            {game.name}
+                                        </Typography>  
+                                    </div> 
+                                    <Link to={`/game/${game.id}`}><img src={game.background_image} style={{width: "16rem", height: "8rem", borderRadius: 15, boxShadow: "2px 4px 3px black"}}/></Link>
+                                    <div style={{marginTop: 5, marginBottom: 5}}>
+                                        <Typography sx={{ textShadow: "4px 6px 5px black", letterSpacing: 1}} variant="span" component="span">
+                                            Metacritic score: <span style = {{fontSize: 20, fontWeight: "bold"}}>{game.metacritic}</span>
+                                        </Typography> 
+                                        <Button onClick={() => AddToWishList(game)} sx={{color: "white", borderColor: "white", boxShadow: " 2px 8px 10px black", marginTop: 1}} variant="outlined">Add to Wishlist</Button>
+                                    </div>
+                                </div>
+                        ))}
+                    </section>
+                                
+                </>            
+            )
         }
-        if (data) {
-            console.log(data)
-        }
-  }
-  const [searchGame, setSearchGame] = useState("");
+    }
+  
 
   return (
     <>
-    
-    <input style={{marginTop: 70}}type="text" value={searchGame} onChange={(event) => setSearchGame(event.target.value)} />
-    <Typography sx={{mt: 5, mb: 2, textShadow: "2px 4px 3px black"}} variant="h4" component="h2">
-        New games
-    </Typography>
-    <section style={{display: "flex", gap: 10, overflow: "auto", margin: "3rem 0"}}>
-        {newGames
-            .filter((game) => game.name.toLowerCase().includes(searchGame))
-            .map((game) => (
-                <div key={game.id} style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",}}>
-                <div style = {{height: 30, marginBottom: 8}}>
-                        <Typography sx={{mb: 2, mt: 2, textShadow: "4px 6px 5px black", fontWeight: "bold", letterSpacing: 1}} variant="span" component="span">
-                            {game.name}
-                        </Typography>  
-                    </div> 
-                    <Link to={`/game/${game.id}`}><img src={game.background_image} style={{width: "16rem", height: "8rem", borderRadius: 15, boxShadow: "2px 4px 3px black"}}/></Link>
-                    <div style={{marginTop: 5, marginBottom: 5}}>
-                    <Typography sx={{ textShadow: "4px 6px 5px black", letterSpacing: 1}} variant="span" component="span">
-                            Metacritic score: <span style = {{fontSize: 20, fontWeight: "bold"}}>{game.metacritic}</span>
-                    </Typography> 
-                    <Button onClick={() => AddToWishList(game)} sx={{color: "white", borderColor: "white", boxShadow: " 2px 8px 10px black", marginTop: 1}} variant="outlined">Add to Wishlist</Button>
-                    </div>
-                </div>
-            ))}
-    </section>
-      
-    <Typography sx={{mb: 2, mt: 2, textShadow: "2px 4px 3px black"}} variant="h4" component="h2">
-        Popular games
-    </Typography>
-    <section style={{display: "flex", gap: 10, overflow: "auto", margin: "3rem 0"}}>
-        {games
-            .filter((game) => game.name.toLowerCase().includes(searchGame))
-            .map((game) => (
-                <div key={game.id} style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
-                    <div style = {{height: 30, marginBottom: 8}}>
-                        <Typography sx={{mb: 2, mt: 2, textShadow: "4px 6px 5px black", fontWeight: "bold", letterSpacing: 1}} variant="span" component="span">
-                            {game.name}
-                        </Typography>  
-                    </div> 
-                    <Link to={`/game/${game.id}`}><img src={game.background_image} style={{width: "16rem", height: "8rem", borderRadius: 15, boxShadow: "2px 4px 3px black"}}/></Link>
-                    <div style={{marginTop: 5, marginBottom: 5}}>
-                        <Typography sx={{ textShadow: "4px 6px 5px black", letterSpacing: 1}} variant="span" component="span">
-                            Metacritic score: <span style = {{fontSize: 20, fontWeight: "bold"}}>{game.metacritic}</span>
-                        </Typography> 
-                        <Button onClick={() => AddToWishList(game)}  sx={{color: "white", borderColor: "white", boxShadow: " 2px 8px 10px black", marginTop: 1}} variant="outlined">Add to Wishlist</Button>
-                    </div>
-                </div>
-            ))}
-    </section>
-
-    <Typography sx={{mb: 2, mt: 2, textShadow: "2px 4px 3px black"}} variant="h4" component="h2">
-        Best rated games
-    </Typography>
-    <section style={{display: "flex", gap: 10, overflow: "auto",  margin: "3rem 0"}}>
-        {bestRated
-            .filter((game) => game.name.toLowerCase().includes(searchGame))
-            .map((game) => (
-                <div key={game.id} style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
-                    <div style = {{height: 30, marginBottom: 8}}>
-                        <Typography sx={{mb: 2, mt: 2, textShadow: "4px 6px 5px black", fontWeight: "bold", letterSpacing: 1}} variant="span" component="span">
-                            {game.name}
-                        </Typography>  
-                    </div> 
-                    <Link to={`/game/${game.id}`}><img src={game.background_image} style={{width: "16rem", height: "8rem", borderRadius: 15, boxShadow: "2px 4px 3px black"}}/></Link>
-                    <div style={{marginTop: 5, marginBottom: 5}}>
-                        <Typography sx={{ textShadow: "4px 6px 5px black", letterSpacing: 1}} variant="span" component="span">
-                            Metacritic score: <span style = {{fontSize: 20, fontWeight: "bold"}}>{game.metacritic}</span>
-                        </Typography> 
-                        <Button onClick={() => AddToWishList(game)} sx={{color: "white", borderColor: "white", boxShadow: " 2px 8px 10px black", marginTop: 1}} variant="outlined">Add to Wishlist</Button>
-                    </div>
-                </div>
-            ))}
-    </section>
-
-    <Typography sx={{mb: 2, mt: 2, textShadow: "2px 4px 3px black"}} variant="h4" component="h2">
-        Play on PC
-    </Typography>
-    <section style={{display: "flex", gap: 10, overflow: "auto",  margin: "3rem 0"}}>
-        {platformPC
-            .filter((game) => game.name.toLowerCase().includes(searchGame))
-            .map((game) => (
-                <div key={game.id} style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
-                    <div style = {{height: 30, marginBottom: 8}}>
-                        <Typography sx={{mb: 2, mt: 2, textShadow: "4px 6px 5px black", fontWeight: "bold", letterSpacing: 1}} variant="span" component="span">
-                            {game.name}
-                        </Typography>  
-                    </div> 
-                    <Link to={`/game/${game.id}`}><img src={game.background_image} style={{width: "16rem", height: "8rem", borderRadius: 15, boxShadow: "2px 4px 3px black"}}/></Link>
-                    <div style={{marginTop: 5, marginBottom: 5}}>
-                        <Typography sx={{ textShadow: "4px 6px 5px black", letterSpacing: 1}} variant="span" component="span">
-                            Metacritic score: <span style = {{fontSize: 20, fontWeight: "bold"}}>{game.metacritic}</span>
-                        </Typography> 
-                        <Button onClick={() => AddToWishList(game)}  sx={{color: "white", borderColor: "white", boxShadow: " 2px 8px 10px black", marginTop: 1}} variant="outlined">Add to Wishlist</Button>
-                    </div>
-                </div>
-            ))}
-    </section>
-    <Typography sx={{mb: 2, mt: 2, textShadow: "2px 4px 3px black"}} variant="h4" component="h2">
-        Play on Playstation
-    </Typography>
-    <section style={{display: "flex", gap: 10, overflow: "auto", margin: "3rem 0"}}>
-        {platformPSN
-            .filter((game) => game.name.toLowerCase().includes(searchGame))
-            .map((game) => (
-                <div key={game.id} style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
-                    <div style = {{height: 30, marginBottom: 8}}>
-                        <Typography sx={{mb: 2, mt: 2, textShadow: "4px 6px 5px black", fontWeight: "bold", letterSpacing: 1}} variant="span" component="span">
-                            {game.name}
-                        </Typography>  
-                    </div>  
-                    <Link to={`/game/${game.id}`}><img src={game.background_image} style={{width: "16rem", height: "8rem", borderRadius: 15, boxShadow: "2px 4px 3px black"}}/></Link>
-                    <div style={{marginTop: 5, marginBottom: 5}}>
-                        <Typography sx={{ textShadow: "4px 6px 5px black", letterSpacing: 1}} variant="span" component="span">
-                            Metacritic score: <span style = {{fontSize: 20, fontWeight: "bold"}}>{game.metacritic}</span>
-                        </Typography> 
-                        <Button onClick={() => AddToWishList(game)}  sx={{color: "white", borderColor: "white", boxShadow: " 2px 8px 10px black", marginTop: 1}} variant="outlined">Add to Wishlist</Button>
-                    </div>
-                </div>
-            ))}
-    </section>
-    <Typography sx={{mb: 2, mt: 2, textShadow: "2px 4px 3px black"}} variant="h4" component="h2">
-        Play on Xbox
-    </Typography>
-    <section style={{display: "flex", gap: 10, overflow: "auto",  }}>
-        {platformXbox
-            .filter((game) => game.name.toLowerCase().includes(searchGame))
-            .map((game) => (
-                <div key={game.id} style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
-                    <Typography sx={{mb: 2, mt: 2, textShadow: "4px 6px 5px black", fontWeight: "bold", letterSpacing: 1}} variant="span" component="span">
-                        {game.name}
-                    </Typography>   
-                    <Link to={`/game/${game.id}`}><img src={game.background_image} style={{width: "16rem", height: "8rem", borderRadius: 15, boxShadow: "2px 4px 3px black"}}/></Link>
-                    <div style={{marginTop: 5, marginBottom: 5}}>
-                        <Typography sx={{ textShadow: "4px 6px 5px black", letterSpacing: 1}} variant="span" component="span">
-                            Metacritic score: <span style = {{fontSize: 20, fontWeight: "bold"}}>{game.metacritic}</span>
-                        </Typography> 
-                        <Button onClick={() => AddToWishList(game)}  sx={{color: "white", borderColor: "white", boxShadow: " 2px 8px 10px black", marginTop: 1}} variant="outlined">Add to Wishlist</Button>
-                    </div>
-                </div>
-            ))}
-    </section>
-    
-      
-
-
+        <input style={{marginTop: 70}}type="text" value={searchGame} onChange={(event) => setSearchGame(event.target.value)} />
+        {jsxTemplate(newGames, "New games")}
+        {jsxTemplate(games, "Popular games")}
+        {jsxTemplate(bestRated, "Best rated games")}
+        {jsxTemplate(platformPC, "Play on PC")}
+        {jsxTemplate(platformPSN, "Play on Playstation")}
+        {jsxTemplate(platformXbox, "Play on Xbox")}
     </>
   )
 }

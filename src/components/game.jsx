@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom"
 import { getGameApi } from "../api/api";
 import { useState, useEffect } from "react";
 import { Button } from "@mui/material";
-import supabase from "../api/supaBase";
+import { AddToWishList } from "./wishlistOperations";
 
 function Game() {
    const {gameId} = useParams();
@@ -16,30 +16,12 @@ function Game() {
    }, [gameId])
    console.log(game)
 
-   async function AddToWishList({name, background_image, metacritic}) {
-    
-    if(!name || !background_image || !metacritic) {
-        return "error -- U mising something"
-    
-    }
-    const {data, error} = await supabase
-        .from("wishlist")
-        .insert([{name: name, image: background_image, metaScore: metacritic}])
-        
-        if (error) {
-            console.log("U missing something")
-        }
-        if (data) {
-            console.log(data)
-        }
-  }
-
    if (!game) {
     return <div>Loader...</div>
    }
     return (
 
-        <div style={{marginTop: 80}}>
+        <div key={game.id} style={{marginTop: 80}}>
             <button><Link to="/">Powrót</Link></button>
             <div>
                 <h2>{game.name}</h2>

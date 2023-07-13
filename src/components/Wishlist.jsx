@@ -45,28 +45,28 @@ function WishList() {
             .eq("name", name)
             .select()
             
-            if (error) {
-                console.log("U missing something")
-            }
+        if (error) {
+            console.log("U missing something")
+        }
             
-            setWishedGames(prevWishedGames => prevWishedGames.filter(game => game.name !== name))
-      }
+        setWishedGames(prevWishedGames => prevWishedGames.filter(game => game.name !== name))
+    }
     
-         function sortResults(sortType) {
-            if(sortType == "created_at") {
-                setOrderBy("created_at");
-                return setWishedGames(wishedGames => wishedGames.toReversed())
-            }
-            if(sortType == "name") {
-                setOrderBy("name");
-                return setWishedGames(wishedGames => wishedGames.toReversed())
-            }
-            if(sortType == "metacritic") {
-                setOrderBy("metacritic");
-                return setWishedGames(wishedGames => wishedGames.toReversed())
-            }  
-         }
-         const [searchGame, setSearchGame] = useState("");     
+    function sortResults(sortType) {
+        if(sortType == "created_at") {
+            setOrderBy("created_at");
+            return setWishedGames(wishedGames => wishedGames.toReversed())
+        }
+        if(sortType == "name") {
+            setOrderBy("name");
+            return setWishedGames(wishedGames => wishedGames.toReversed())
+        }
+        if(sortType == "metacritic") {
+            setOrderBy("metacritic");
+            return setWishedGames(wishedGames => wishedGames.toReversed())
+        }  
+    }
+    const [searchGame, setSearchGame] = useState("");     
 
 return (
 <>
