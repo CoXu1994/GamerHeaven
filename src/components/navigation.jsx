@@ -26,7 +26,7 @@ export default function NavBar() {
   
     return (
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="fixed" sx={{bgcolor: "black", borderBottom: "2px solid gray"}}>
+        <AppBar position="fixed" sx={{bgcolor: "black", borderBottom: "2px solid gray", minWidth: 360, margin: 0}}>
           <Toolbar sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
             <Link style={{color: "white", textDecoration: "none",mr: 2, cursor: "pointer"}} to= "/">
               <Typography variant="h6" component="span" sx={{ flexGrow: 1}}>
@@ -56,10 +56,11 @@ export default function NavBar() {
             >
                 
               <Box>
+              <Link style={{color: "transparent", textDecoration: "none",mr: 2, cursor: "pointer"}} to= "/wish-list">
                 <ListItemButton>
                   <ListItemText primary="Wish-list" />    
-                  <Link style={{color: "transparent", textDecoration: "none",mr: 2, cursor: "pointer"}} to= "/wish-list">Go to wish list</Link>       
-                </ListItemButton>
+                 <p>asdfghn</p> Go to wish list   
+                </ListItemButton></Link>    
                 <ListItemButton>
                   <ListItemText primary="Kategorie" />    
                   <Link style={{color: "transparent", textDecoration: "none",mr: 2, cursor: "pointer"}} to= "categories">Go to categories</Link>       

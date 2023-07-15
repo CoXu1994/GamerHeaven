@@ -14,6 +14,11 @@ export async function getCategoryGamesApi(category) {
     return response.json();
 }
 
+export async function getByTitleGamesApi(title) {
+    const response = await fetch(`https://api.rawg.io/api/games?search=${title}&key=65f7e9f0f2c14d05b7934079b49af787&page_size=10` );
+    return response.json();
+}
+
 export async function getBestRatedGamesApi() {
     const response = await fetch(`https://api.rawg.io/api/games?key=65f7e9f0f2c14d05b7934079b49af787&metacritic=85,100&page_size=10` );
     return response.json();

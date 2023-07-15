@@ -3,7 +3,7 @@ import App from "./App";
 import WishList from "./components/Wishlist";
 import Layout from "./components/Layout";
 import Categories from "./components/Categories";
-import Game from "./components/game";
+import GameCard from "./components/gameCard";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -14,8 +14,8 @@ const router = createBrowserRouter([
               element: <App />
           },
           {
-            path: "game/:gameId",
-            element: <Game />
+            path: "gameCard/:gameId",
+            element: <GameCard />
           },
           {
               path: "wish-list",

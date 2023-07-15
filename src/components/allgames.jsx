@@ -3,7 +3,7 @@ import { getAllGamesApi, getBestRatedGamesApi, getNewGamesApi, getPlatformApi,/*
 import { Button, Typography} from '@mui/material';
 import { Link } from "react-router-dom";
 import { AddToWishList } from "./wishlistOperations";
-
+import * as Style from './allgames.style'
 
 function AllGames() {
   const [newGames, setNewGames] = useState([]);
@@ -39,13 +39,13 @@ function AllGames() {
                     </Typography>
                     <section style={{display: "flex", gap: 10, overflow: "auto", margin: "3rem 0"}}>
                         {filteredData.map((game) => (
-                                <div key={game.id} style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center",}}>
+                                <div key={game.id} style={Style.GameContainer}>
                                     <div style = {{height: 30, marginBottom: 8}}>
                                         <Typography sx={{mb: 2, mt: 2, textShadow: "4px 6px 5px black", fontWeight: "bold", letterSpacing: 1}} variant="span" component="span">
                                             {game.name}
                                         </Typography>  
                                     </div> 
-                                    <Link to={`/game/${game.id}`}><img src={game.background_image} style={{width: "16rem", height: "8rem", borderRadius: 15, boxShadow: "2px 4px 3px black"}}/></Link>
+                                    <Link to={`/gameCard/${game.id}`}><img src={game.background_image} style={{width: "16rem", height: "8rem", borderRadius: 15, boxShadow: "2px 4px 3px black"}}/></Link>
                                     <div style={{marginTop: 5, marginBottom: 5}}>
                                         <Typography sx={{ textShadow: "4px 6px 5px black", letterSpacing: 1}} variant="span" component="span">
                                             Metacritic score: <span style = {{fontSize: 20, fontWeight: "bold"}}>{game.metacritic}</span>
