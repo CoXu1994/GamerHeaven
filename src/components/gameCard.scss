@@ -1,11 +1,298 @@
-.game {
-    &_container {
-        margin-top: 50px; 
-        width: 375px;
-        display: "flex";
-        flex-direction: "column";
-        align-items: "center"; 
-        justify-content: "center";
-        margin-inline: "auto";
+@use "./mixins.scss" as *;
+
+.gameCard {
+    &__container {
+        &--main {
+        margin-top: 50px;
+        width: 360px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center;
+        margin-inline: auto;
+        @include tablet {
+            margin-top: 70px;
+            min-width: 760px;
+            max-width: 1020px;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        @include desktop {
+            margin-top: 90px;
+            min-width: 1020px;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        }
+        &--description {
+        background-color: rgba(255,255,255, 0.125); 
+        border-radius: 5px;
+        min-width: 360px;
+        max-width: 767px; 
+        color: rgb(255,255,255); 
+        padding: 6px 10px; 
+        margin-top: 10px;
+
+        @include tablet {
+            margin-top: 20px;
+            min-width: 760px;
+            max-width: 1020px;
+            padding: 12px 20px;
+        }
+        @include desktop {
+            margin-top: 20px;
+            min-width: 1020px;
+            padding: 14px 28px;
+        }
+        }
+        &--rates {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-inline: auto;
+            gap: 5;
+            margin-top: 15px; 
+            width: 360px;
+            padding: 10px;
+            background-color: rgba(255,255,255, 0.125); 
+            font-family: 'Tektur', cursive;
+
+            @include tablet {
+                margin-top: 20px;
+                min-width: 760px;
+                max-width: 1020px;
+                padding: 12px 20px;
+            }
+            @include desktop {
+                margin-top: 20px;
+                min-width: 1020px;
+                padding: 14px 28px;
+            }
+        }
+    }
+    &__image {
+        margin-top: 20px;
+        width: 360px; 
+        border-radius: 5px;
+        @include tablet {
+            margin-top: 20px;
+            min-width: 760px;
+            max-width: 1020px;
+            
+            
+        }
+        @include desktop {
+            margin-top: 20px;
+            min-width: 1020px;
+            
+        }
+    }
+    &__title--game {
+        background-color: rgba(255,255,255, 0.125);
+        border-radius: 5px; 
+        width: 360px; 
+        text-align: center; 
+        color: rgb(255,255,255);
+        padding: 1px 10px; 
+        box-sizing: border-box;
+        margin-top: 15px;
+
+         @include tablet {
+            margin-top: 20px;
+            padding: 10px 20px;
+            min-width: 760px;
+            max-width: 1020px;
+            
+        }
+        @include desktop {
+            margin-top: 25px;
+            padding: 20px 30px;
+            min-width: 1020px;
+        }
+        
+    }
+    &__title {
+        font-family: 'Tektur', cursive;
+        font-size: 22px;
+        font-weight: 600;
+
+        @include tablet {
+            font-size: 24px;
+        }
+        @include desktop {
+           font-size: 28px;
+        }
+    }
+    &__description {
+        &__title {
+            display: block;
+            border-bottom: 1px solid white;
+            font-size: 20px;
+            line-height: 2em;
+            font-family: 'Tektur', cursive;
+            font-weight: 500;
+
+            @include tablet {
+                font-size: 24px;
+            }
+            @include desktop {
+               font-size: 28px;
+               
+            }
+        }
+        &__txt {
+            overflow: auto;
+            height: 150px;
+            color: white;
+            margin-top: 10px;
+            font-family: 'Tektur', cursive;
+            font-weight: 400;
+            font-size: 14px;
+            padding-bottom: 6px;
+
+            @include tablet {
+                font-size: 20px;
+                height: 300px;
+            }
+            @include desktop {
+               font-size: 20px;
+               height: 400px;
+            }
+        }
+    }
+    &__esrb {
+        display: flex;
+        flex-basis: 40%; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center;
+        gap: 3;
+
+        &__title {
+            font-weight: bold;
+            font-size: 20px;
+            color: white; 
+            border-bottom: 1px solid white; 
+            line-height: 2em;
+            @include tablet {
+                font-size: 24px;
+            }
+            @include desktop {
+               font-size: 28px;
+               border-bottom: 2px solid white;
+            }
+        }
+        &__rate {
+            color: white; 
+            margin-top: 10px;
+
+            @include tablet {
+                font-size: 20px;
+            }
+            @include desktop {
+               font-size: 24px;
+            }
+        }      
+    }
+    &__metascore {
+        margin-left: 20px;
+        display: flex;
+        flex-basis: 50%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3;
+        &__title {
+            font-weight: bold;
+            font-size: 20px;
+            color: white;
+            border-bottom: 1px solid white;
+            line-height: 2em;
+
+            @include tablet {
+                font-size: 24px;
+            }
+            @include desktop {
+               font-size: 28px;
+               border-bottom: 2px solid white;
+            }
+        }
+        &__score {
+            font-weight: 400;
+            color: white;
+            margin-top: 10px;
+
+            @include tablet {
+                font-size: 20px;
+            }
+            @include desktop {
+               font-size: 24px;
+            }
+        }
+    }
+    &__platforms {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-inline: auto;
+        gap: 5;
+        margin-top: 15px; 
+        width: 360px;
+        padding: 10px;
+        background-color: rgba(255,255,255, 0.125); 
+        font-family: 'Tektur', cursive;
+        @include tablet {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding:20px 10px;
+            min-width: 760px;
+            max-width: 1020px;
+            
+        }
+        @include desktop {
+            padding:20px 10px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            padding: 20px 30px;
+            min-width: 1020px;
+        }
+        &__title {
+            text-align: center; font-weight: bold;
+            font-size: 20px;
+            color: white;
+            border-bottom: 1px solid white;
+            line-height: 2em;
+
+            @include tablet {
+                font-size: 24px;
+            }
+            @include desktop {
+               font-size: 28px;
+               border-bottom: 2px solid white;
+            }
+        }
+        &__txt {
+            text-align: center; 
+            color: white; 
+            margin-top: 10px;
+
+            @include tablet {
+                font-size: 20px;
+            }
+            @include desktop {
+               font-size: 24px;
+            }
+        }
+    }
+}
+
+.button {
+    @include tablet {
+        transform: scale(1.6);
+        
+    }
+    @include desktop {
+        transform: scale(2);
     }
 }
