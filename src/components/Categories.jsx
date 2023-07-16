@@ -12,19 +12,20 @@ function Categories() {
 
  return (
     <>
-        
-        <h2 style={{marginTop: 80, textAlign: "center"}}>Wybierz kategorie</h2>
-        <div style={{display: "flex", flexWrap: "wrap", justifyContent:"center"}}>
-            <button onClick={() => getGamesFromGenre("action")}>Action</button>
-            <button onClick={() => getGamesFromGenre("shooter")}>Shooter</button>
-            <button onClick={() => getGamesFromGenre("adventure")}>Adventure</button>
-            <button onClick={() => getGamesFromGenre("indie")}>Indie</button>
-            <button onClick={() => getGamesFromGenre("fighting")}>Fighting</button>
-            <button onClick={() => getGamesFromGenre("platformer")}>Platformer</button>
-            <button onClick={() => getGamesFromGenre("strategy")}>Strategy</button>
-            <button onClick={() => getGamesFromGenre("simulation")}>Simulation</button>
-            <button onClick={() => getGamesFromGenre("sports")}>Sports</button>
-            <input style={{marginTop: 5, width: "70%"}}type="text" value={searchGame} onChange={(event) => setSearchGame(event.target.value)} />
+        <div className="filtr__box">
+            <h2 className="filtr__title"style={{marginTop: 80, textAlign: "center"}}>Choose genre: </h2>
+            <div className="filtr__buttons"style={{display: "flex", flexWrap: "wrap", justifyContent:"center"}}>
+                <button className="btn" onClick={() => getGamesFromGenre("action")}>Action</button>
+                <button className="btn" onClick={() => getGamesFromGenre("shooter")}>Shooter</button>
+                <button className="btn" onClick={() => getGamesFromGenre("adventure")}>Adventure</button>
+                <button className="btn" onClick={() => getGamesFromGenre("indie")}>Indie</button>
+                <button className="btn" onClick={() => getGamesFromGenre("fighting")}>Fighting</button>
+                <button className="btn" onClick={() => getGamesFromGenre("platformer")}>Platformer</button>
+                <button className="btn" onClick={() => getGamesFromGenre("strategy")}>Strategy</button>
+                <button className="btn" onClick={() => getGamesFromGenre("simulation")}>Simulation</button>
+                <button className="btn" onClick={() => getGamesFromGenre("sports")}>Sports</button>
+                <input className="searchbar" style={{marginTop: 5, width: "70%"}}type="text" value={searchGame} onChange={(event) => setSearchGame(event.target.value)} />
+            </div>
         </div>
         
         {newGames
