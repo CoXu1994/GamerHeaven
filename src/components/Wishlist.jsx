@@ -85,16 +85,16 @@ return (
                 <Button 
                     onClick = {() => sortResults('created_at')}
                 >
-                    Date of 
+                    Date added
                 </Button>
                 <Button  
                     onClick = {() => sortResults('name')}
-                >Nazwa
+                > Name
                 </Button>
                 <Button 
                     onClick = {() => sortResults('metacritic')}
                 > 
-                    Ocena Metacritic
+                    Metacritic Score
                 </Button>
 
 

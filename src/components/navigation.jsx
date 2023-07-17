@@ -15,6 +15,7 @@ import SearchBar from './SearchBar';
 export default function NavBar() {
   const  [open, toggleDrawer] = useState(false);
   const [button, toggleButton] = useState(false);
+  const [sort, toggleSort] = useState(false);
 
   const handleOptionDisplay = (button) => {
     if (button == true) {
@@ -23,6 +24,10 @@ export default function NavBar() {
       return toggleButton(true)
     }
   }
+  const handleSortDisplay = (event) => {
+    return event.classList.toggle("d-none")
+  }
+
   
     return (
       <Box sx={{ flexGrow: 1 }}>
@@ -51,25 +56,25 @@ export default function NavBar() {
               open={open} //if open is true, drawer is shown
                       
               onClose={() => toggleDrawer(false)} //function that is called when the drawer should close
-                      
-              onOpen={() => toggleDrawer(true)} //function that is called when the drawer should open
             >
                 
               <Box>
-              <Link style={{color: "transparent", textDecoration: "none",mr: 2, cursor: "pointer"}} to= "/wish-list">
+              <Link style={{textDecoration: "none",mr: 2, cursor: "pointer"}} to= "/wish-list">
                 <ListItemButton>
-                  <ListItemText primary="Wish-list" />    
-                 <p>asdfghn</p> Go to wish list   
+                  <ListItemText primary="Wish-list"/>    
+                 <p style={{color: "black",}}>Go to wish list   </p> 
                 </ListItemButton></Link>    
                 <ListItemButton>
-                  <ListItemText primary="Kategorie" />    
-                  <Link style={{color: "transparent", textDecoration: "none",mr: 2, cursor: "pointer"}} to= "categories">Go to categories</Link>       
+                  <ListItemText sx={{color: "black"}} primary="Kategorie" />    
+                  <Link style={{color: "black" ,textDecoration: "none",mr: 2, cursor: "pointer"}} to= "categories">Go to categories</Link>       
                 </ListItemButton>
                 <ListItemButton onClick={() => {}}>
-                  <ListItemText primary="Sortowanie" />          
+                  <ListItemText primary="Sortowanie" /> 
+                  <p style = {{color: "black"}}>Sort options     </p>
                 </ListItemButton>
                 <ListItemButton onClick={() => {}}>
-                  <ListItemText primary="Filtrowanie" />          
+                  <ListItemText primary="Filtrowanie" />  
+                  <p style = {{color: "black"}}>Filter options     </p>        
                 </ListItemButton>
                 <ListItemButton>
                 <ListItemText primary="Szukaj" />
