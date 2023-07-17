@@ -1,0 +1,59 @@
+@use "./mixins.scss" as *;
+
+.nav {
+    &__title {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 5px 10px;
+    &:hover {
+        @include desktop {
+            background-color: rgb(255,255,255);
+            color: black;
+            border-radius: 25px;
+            font-size: 28px;
+        }    
+    }
+    }
+    &__box {
+        border-bottom: 2px solid white; 
+        min-width: 360px;
+        margin: 0;
+    }
+    &__menu {
+        display: none;
+        @media (min-width: 900px) {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+       
+        &__option {
+            height: 64px;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px 10px;
+            cursor: pointer;
+            &:hover {
+                background-color: rgb(255,255,255);
+                color: black;
+                font-weight: bold;
+            }
+        }
+    }
+    &__link {
+        text-decoration: none;
+        cursor: pointer;
+    }
+    &__burger {
+        display: flex;
+        justify-content: center;
+        color: white;
+        padding: 20px;
+        font-size: 28px;
+        width: 100%;
+        background-color: black;
+        
+    }
+}

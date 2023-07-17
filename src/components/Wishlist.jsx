@@ -75,29 +75,31 @@ return (
 
         
         <section className="wishlist__container">
-            <input 
-                className="searchbar" 
-                type="text" 
-                value={searchGame} 
-                onChange={(event) => setSearchGame(event.target.value)} 
-            />
-            <div className="btn__container d-none">
-                <Button 
-                    onClick = {() => sortResults('created_at')}
-                >
-                    Date added
-                </Button>
-                <Button  
-                    onClick = {() => sortResults('name')}
-                > Name
-                </Button>
-                <Button 
-                    onClick = {() => sortResults('metacritic')}
-                > 
-                    Metacritic Score
-                </Button>
-
-
+            <div className="btn__container">
+                <h3 className="searchbar__title__wishlist">Sort by: </h3>
+                <div className="btn__box">
+                    <button 
+                        className="btn__sort"
+                        onClick = {() => sortResults('created_at')}
+                    >
+                        Date added
+                    </button> 
+                    <button
+                        className="btn__sort"
+                        onClick = {() => sortResults('name')}
+                    > Name
+                    </button>
+                    <button 
+                        className="btn__sort"
+                        onClick = {() => sortResults('metacritic')}
+                    > 
+                        Metacritic Score
+                    </button>
+                </div>
+                <div>
+                    <h3 className="searchbar__title__wishlist">Find the game:</h3>
+                    <input className="searchbar__wishlist" type="text" value={searchGame} onChange={(event) => setSearchGame(event.target.value)} />
+                </div>
                 
             </div>
             {fetchError && (<p>{fetchError}</p>)}
