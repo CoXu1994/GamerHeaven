@@ -74,28 +74,30 @@ return (
 <>
 
 
-        
+        {wishedGames.length == 0 && (<p className="noGames" >No games on the list {`:(`}</p>)}
         <section className="wishlist__container">
             <div className="btn__container">
-                <h3 className="wishlist__title">Sort by: </h3>
-                <div className="btn__box">
-                    <button 
-                        className="btn__sort icon-sort"
-                        onClick = {() => sortResults('created_at')}
-                    >
-                        Date added
-                    </button> 
-                    <button
-                        className="btn__sort icon-sort"
-                        onClick = {() => sortResults('name')}
-                    > Name
-                    </button>
-                    <button 
-                        className="btn__sort icon-sort"
-                        onClick = {() => sortResults('metacritic')}
-                    > 
-                        Metacritic Score
-                    </button>
+                <div>
+                    <h3 className="wishlist__title">Sort by: </h3>
+                    <div className="btn__box">
+                        <button 
+                            className="btn__sort icon-sort"
+                            onClick = {() => sortResults('created_at')}
+                        >
+                            Date added
+                        </button> 
+                        <button
+                            className="btn__sort icon-sort"
+                            onClick = {() => sortResults('name')}
+                        > Name
+                        </button>
+                        <button 
+                            className="btn__sort icon-sort"
+                            onClick = {() => sortResults('metacritic')}
+                        > 
+                            Metacritic Score
+                        </button>
+                    </div>
                 </div>
                 <div className="searchbar__box w">
                     <label className="searchbar__title" htmlFor="search">Find the game</label>
@@ -104,6 +106,7 @@ return (
                 
             </div>
             {fetchError && (<p>{fetchError}</p>)}
+            
             <div className="wishlist__list">
             {wishedGames && (
                 wishedGames
@@ -120,7 +123,7 @@ return (
                                 <span class="game__title__metacritic">Metacritic score: </span> 
                                 <span class="game__score">{metacritic}</span>
                             </div>
-                            <button  className="btn" onClick={() => AddToWishList(game)}>
+                            <button  className="btn" onClick={() => removeFromWishList(game)}>
                                 <span className="btn__icon icon-cancel-squared"></span>
                                 <span className="btn__txt">Remove</span>
                             </button>
@@ -129,7 +132,7 @@ return (
                 ))
             }
             </div>
-            {wishedGames.length == 0 && (<p className="noGames" >No games on the list {`:(`}</p>)}
+           
         </section>
 </>
     ) 

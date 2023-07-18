@@ -19,8 +19,8 @@ export default function NavBar() {
       <Box>
         <AppBar position="fixed" className="nav__box" sx={{bgcolor: "black"}}>
           <Toolbar sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-            <Link style={{color: "white", textDecoration: "none",mr: 2, cursor: "pointer"}} to= "/">
-              <span className="nav__title">GamerHaven</span>
+            <Link className=""style={{color: "white", textDecoration: "none",mr: 2, cursor: "pointer"}} to= "/">
+              <span className="nav__title icon-gamepad">GamerHaven</span>
             </Link>
             <IconButton 
               edge="start"
@@ -41,9 +41,9 @@ export default function NavBar() {
               onClose={() => toggleDrawer(false)} //function that is called when the drawer should close
             >
                 
-              <Box sx={{bgcolor: "rgb(100,100,100)"}}>
+              <Box sx={{bgcolor: "rgba(0,0,0, 0.9)", border: "4px solid black"}}>
                 <Link className="nav__link" to= "/wish-list">
-                  <ListItemButton>
+                  <ListItemButton sx={{borderBottom: "4px solid black"}}>
                     <p className = "nav__burger">Go to wish list</p> 
                   </ListItemButton>
                 </Link>    
@@ -54,7 +54,7 @@ export default function NavBar() {
                 </Link>
               </Box>
             </Drawer>
-            <div className="nav__menu d-none">
+            <div className="nav__menu">
               <Link className="nav__link" to= "/wish-list">
                 <p className="nav__menu__option" >Wish list</p>
               </Link>

@@ -62,7 +62,9 @@
 .btn:hover .icon-sort:before {
   color: black;
 }
-
+.nav__title:hover .icon-gamepad:before {
+  color: black;
+}
 
 
 .icon-plus-squared:before { content: '\e800'; font-size: 24px; margin-right: 5px;} /* '' */
@@ -72,4 +74,4 @@
 .icon-right:before { content: '\e804'; } /* '' */
 .icon-left:before { content: '\e805'; } /* '' */
 .icon-sort:before { content: '\f0dc'; font-size: 24px; margin-left: 20px ;margin-right: 20px;} /* '' */
-.icon-gamepad:before { content: '\f11b'; } /* '' */
+.icon-gamepad:before { content: '\f11b';font-size: 30px; margin-right: 10px } /* '' */

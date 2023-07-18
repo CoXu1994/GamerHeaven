@@ -14,6 +14,7 @@ function Categories() {
 
  return (
     <div>
+        {newGames.length == 0 && (<p className="display">No games on the list {`:(`}</p>)}
         <div className="filter__box">
             <h2 className="filter__title">Choose genre: </h2>
             <div className="filter__buttons">
@@ -27,10 +28,11 @@ function Categories() {
                 <button className="filter__btn" onClick={() => getGamesFromGenre("simulation")}>Simulation</button>
                 <button className="filter__btn" onClick={() => getGamesFromGenre("sports")}>Sports</button>
             </div>
-            <div className="searchbar__box">
-                <label className="searchbar__title" htmlFor="search">Find the game</label>
-                <input className="searchbar" type="text" id="search" value={searchGame} onChange={(event) => setSearchGame(event.target.value)} />
-            </div>
+            
+        </div>
+        <div className="searchbar__box d-none">
+            <label className="searchbar__title" htmlFor="search">Find the game</label>
+            <input className="searchbar" type="text" id="search" value={searchGame} onChange={(event) => setSearchGame(event.target.value)} />
         </div>
         <div className="category__container">
             {newGames

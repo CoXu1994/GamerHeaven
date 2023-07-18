@@ -10,9 +10,31 @@
     }
     &__title {
         font-size: 24px;
+        font-weight: normal;
+        @include tablet {
+            font-size: 28px;
+        }
+        @include desktop {
+            font-size: 32px;
+        }
+
     }
     &__list {
-    
+        @include tablet {
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
+            padding: 0 15px;
+            width: 760px;
+            flex-wrap: wrap;
+        }
+        @include desktop {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            
+        }
+
     }
 }
 
@@ -57,8 +79,11 @@
         font-size: 42px;
         
     }
-
+    & + section {
+        display: none;
+    }
 }
+
 .btn {
     &__sort {
         text-align: left;
@@ -70,12 +95,17 @@
         border: 1px solid white;
         font-size: 20px;
         margin-inline: 5px;
-    
-        @include desktop {
-            height: 60px;
-            min-width: 110px;
-            font-size: 18px;
+        @include tablet {
+            width: 345px;
             padding: 5px;
+            font-size: 24px;
+        }
+        
+        @include desktop {
+            font-size: 28px;
+            padding: 5px;
+            width: 340px;
+            margin: 0;
         } 
         &:hover {
             background-color: rgb(255,255,255);
@@ -90,21 +120,32 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        @include desktop {
+            flex-direction: row;
+            min-width: 1000px;
+        
+        }
     }
     &__container {
         margin-top: 20px;
         margin-bottom: 40px;
+        
 
         @include tablet {
-            justify-content: center;
-            min-width: 760px;
-            flex-direction: row;
+            display: flex;
+            padding-inline: 20px;
+            justify-content: space-between;
+            align-items: flex-end;
+            width: 760px;
         }
 
         @include desktop {
             justify-content: center;
-            min-width: 760px;
+            width: 1000px;
             flex-direction: row;
+            
+
         }
     }
 }
