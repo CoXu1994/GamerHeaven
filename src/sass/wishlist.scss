@@ -1,0 +1,110 @@
+@use "./mixins.scss" as *;
+
+.wishlist {
+    &__container {
+        margin-top: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    &__title {
+        font-size: 24px;
+    }
+    &__list {
+    
+    }
+}
+
+
+
+.noGames {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 60px;
+    color: white;
+    font-size: 24px;
+    padding: 24px;
+    width: 340px;
+    height: 240px;
+    padding-top: 80px;
+    background-image: url(../assets/wishlist_noGames.jpg);
+    background-size: cover;
+    background-position: center 60px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 100px inset black;
+    display: flex;
+    justify-content: center;
+    
+    @include tablet {
+        padding-top: 120px;
+        margin-top: 50px;
+        width: 460px;
+        height: 320px;
+        background-position: center 70px;
+        font-size: 30px;
+        
+    }
+
+    @include desktop {
+        padding-top: 120px;
+        margin-top: 120px;
+        width: 700px;
+        height: 450px;
+        background-position: center 80px;
+        font-size: 42px;
+        
+    }
+
+}
+.btn {
+    &__sort {
+        text-align: left;
+        padding-inline: 20px;
+        height: 80px;
+        width: 320px;
+        border-radius: 5px;
+        background-color: rgba(255,255,255, 0.1);
+        border: 1px solid white;
+        font-size: 20px;
+        margin-inline: 5px;
+    
+        @include desktop {
+            height: 60px;
+            min-width: 110px;
+            font-size: 18px;
+            padding: 5px;
+        } 
+        &:hover {
+            background-color: rgb(255,255,255);
+            color: black;
+        } 
+        
+    }
+    &__box {
+        margin-top: 20px;
+        font-size: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    &__container {
+        margin-top: 20px;
+        margin-bottom: 40px;
+
+        @include tablet {
+            justify-content: center;
+            min-width: 760px;
+            flex-direction: row;
+        }
+
+        @include desktop {
+            justify-content: center;
+            min-width: 760px;
+            flex-direction: row;
+        }
+    }
+}

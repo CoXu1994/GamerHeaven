@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { getCategoryGamesApi } from "../api/api";
-import { Typography, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 import { AddToWishList } from "./wishlistOperations";
-import "./categories.scss";
+import "../sass/categories.scss";
+import "../sass/common.scss";
 function Categories() {
     const [newGames, setNewGames] = useState([]);
     const [searchGame, setSearchGame] = useState("");
 
     function getGamesFromGenre(genre) {
-        getCategoryGamesApi(genre).then((data) => setNewGames(data.results))
+        getCategoryGamesApi(genre, 1).then((data) => setNewGames(data.results))
     } 
 
  return (
@@ -26,40 +27,32 @@ function Categories() {
                 <button className="filter__btn" onClick={() => getGamesFromGenre("simulation")}>Simulation</button>
                 <button className="filter__btn" onClick={() => getGamesFromGenre("sports")}>Sports</button>
             </div>
-            <h3 className="searchbar__title">Find the game:</h3>
-            <input className="searchbar__categories" type="text" value={searchGame} onChange={(event) => setSearchGame(event.target.value)} />
+            <div className="searchbar__box">
+                <label className="searchbar__title" htmlFor="search">Find the game</label>
+                <input className="searchbar" type="text" id="search" value={searchGame} onChange={(event) => setSearchGame(event.target.value)} />
+            </div>
         </div>
         <div className="category__container">
             {newGames
-                .filter((game) => game.name.toLowerCase().includes(searchGame))
+                .filter((game) => game.name.toLowerCase().includes(searchGame.toLowerCase()))
                 .map((game) => {
                     const {id,name,metacritic,background_image} = game;
                     return (
                     
-                        <div className="category__box" key={id}>
-                            <div className="category__title__box">
-                                <Typography className="game__title" variant="span" component="span">
-                                    {name}
-                                </Typography>  
-                            </div> 
-                            <img className="category__image"src={background_image} />
-                            <div className="category__metacritic__box">
-                                <Typography className="category__metacritic" variant="span" component="span">
-                                    Metacritic score: <span className="category__metacritic__txt">{metacritic}</span>
-                                </Typography> 
-                                <Button 
-                                    onClick={() => AddToWishList(game)} 
-                                    sx={{
-                                        color: "white", 
-                                        borderColor: "white", 
-                                        marginTop: 1
-                                    }} 
-                                    variant="outlined"
-                                >
-                                    Remove from WishList
-                                </Button>
+                        <div className="game__container" key={id}>
+                            <h3 className="game__title">{name}</h3>
+                            <Link className="link" to={`/gameCard/${id}`}>
+                                <img className="game__image" src={background_image}/>
+                            </Link>
+                            <div className="game__meta">
+                                <span class="game__title__metacritic">Metacritic score: </span> 
+                                <span class="game__score">{metacritic}</span>
                             </div>
-                        </div>  
+                            <button  className="btn" onClick={() => AddToWishList(game)}>
+                                <span className="btn__icon icon-plus-squared"></span>
+                                <span className="btn__txt">Add to Wishlist</span>
+                            </button>
+                        </div>
                 )}
             )}
         </div>

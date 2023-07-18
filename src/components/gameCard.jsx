@@ -1,10 +1,9 @@
 import { useParams } from "react-router-dom"
 import { getGameApi } from "../api/api";
 import { useState, useEffect } from "react";
-import { Button } from "@mui/material";
 import { AddToWishList } from "./wishlistOperations";
-import "./gameCard.scss";
-
+import "../sass/gameCard.scss";
+import "../sass/common.scss";
 function GameCard() {
    const {gameId} = useParams();
    const [game, setGame] = useState(null)
@@ -54,17 +53,10 @@ function GameCard() {
                     </div>   
                 </div>      
             </div>
-            <Button className="button"
-                onClick={() => AddToWishList(game)} 
-                sx={{
-                    color: "white", 
-                    borderColor: "white",
-                    marginTop: 5, 
-                    marginBottom: 5,
-                }} 
-                variant="outlined">
-               Add to Wishlist
-            </Button>
+            <button className="btn" onClick={() => AddToWishList(game)}>
+                <span className="btn__icon icon-plus-squared"></span>
+                <span className="btn__txt">Add to Wishlist</span>
+            </button>
         </div>  
     )
 }

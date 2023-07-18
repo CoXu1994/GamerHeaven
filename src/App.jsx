@@ -1,6 +1,6 @@
 import AllGames from "./components/allgames";
 import "./App.css"
-import "./components/gameCard.scss"
+import './css/fontello.css'
 function App() {
 
   

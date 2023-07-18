@@ -1,7 +1,8 @@
 import supabase from "../api/supaBase";
 import { useEffect, useState } from "react";
-import { Typography, Button } from "@mui/material";
-import "./wishlist.scss";
+import { Link } from "react-router-dom";
+import "../sass/wishlist.scss";
+import "../sass/common.scss";
 
 function WishList() {
     const [fetchError, setFetchError] = useState(null);
@@ -76,64 +77,54 @@ return (
         
         <section className="wishlist__container">
             <div className="btn__container">
-                <h3 className="searchbar__title__wishlist">Sort by: </h3>
+                <h3 className="wishlist__title">Sort by: </h3>
                 <div className="btn__box">
                     <button 
-                        className="btn__sort"
+                        className="btn__sort icon-sort"
                         onClick = {() => sortResults('created_at')}
                     >
                         Date added
                     </button> 
                     <button
-                        className="btn__sort"
+                        className="btn__sort icon-sort"
                         onClick = {() => sortResults('name')}
                     > Name
                     </button>
                     <button 
-                        className="btn__sort"
+                        className="btn__sort icon-sort"
                         onClick = {() => sortResults('metacritic')}
                     > 
                         Metacritic Score
                     </button>
                 </div>
-                <div>
-                    <h3 className="searchbar__title__wishlist">Find the game:</h3>
-                    <input className="searchbar__wishlist" type="text" value={searchGame} onChange={(event) => setSearchGame(event.target.value)} />
+                <div className="searchbar__box w">
+                    <label className="searchbar__title" htmlFor="search">Find the game</label>
+                    <input className="searchbar" type="text" id="search" value={searchGame} onChange={(event) => setSearchGame(event.target.value)} />
                 </div>
                 
             </div>
             {fetchError && (<p>{fetchError}</p>)}
-            <div className="game__container">
+            <div className="wishlist__list">
             {wishedGames && (
                 wishedGames
                 .filter((game) => game.name.toLowerCase().includes(searchGame))
                 .map((game) => {
-                    const {id,name,metacritic,image} = game;
+                    const {id,name,metacritic,image, game_id} = game;
                     return(
-                    <div className="game__box" key={id}>
-                        <div className="game__title__box">
-                            <Typography className="game__title" variant="span" component="span">
-                                {name}
-                            </Typography>  
-                        </div> 
-                        <img className="game__image"src={image} />
-                        <div className="game__metacritic__box">
-                            <Typography className="game__metacritic" variant="span" component="span">
-                                Metacritic score: <span className="game__metacritic__txt">{metacritic}</span>
-                            </Typography> 
-                            <Button 
-                                onClick={() => removeFromWishList(game)} 
-                                sx={{
-                                    color: "white", 
-                                    borderColor: "white", 
-                                    marginTop: 1
-                                }} 
-                                variant="outlined"
-                            >
-                                Remove from WishList
-                            </Button>
+                        <div className="game__container" key={id}>
+                            <h3 className="game__title">{name}</h3>
+                            <Link className="link" to={`/gameCard/${game_id}`}>
+                                <img className="game__image" src={image}/>
+                            </Link>
+                            <div className="game__meta">
+                                <span class="game__title__metacritic">Metacritic score: </span> 
+                                <span class="game__score">{metacritic}</span>
+                            </div>
+                            <button  className="btn" onClick={() => AddToWishList(game)}>
+                                <span className="btn__icon icon-cancel-squared"></span>
+                                <span className="btn__txt">Remove</span>
+                            </button>
                         </div>
-                    </div>
                     )}
                 ))
             }
