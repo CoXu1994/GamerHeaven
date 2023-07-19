@@ -61,12 +61,15 @@ function GameCard() {
                     </div>   
                 </div>      
             </div>
-
+            <p className="disclaimer">All data and images comes from RAWG. <a className="page_link" href="https://rawg.io/apidocs">Find more at https://rawg.io/apidocs </a></p>               
             <button className="btn" onClick={() => AddToWishList(game)}>
                 <span className="btn__icon icon-plus-squared"></span>
                 <span className="btn__txt">Add to Wishlist</span>
             </button>
-            
+
+                        
+
+           
         </div>  
     )
 }

@@ -34,6 +34,7 @@ function Categories() {
             </div>
 
             <div className="searchbar__box d-none">
+            <p className="disclaimer">All data and images comes from RAWG. <a className="page_link" href="https://rawg.io/apidocs">Find more at https://rawg.io/apidocs </a></p>
                 <label className="searchbar__title" htmlFor="search">Find the game</label>
                 <input className="searchbar" type="text" id="search" value={searchGame} onChange={(event) => setSearchGame(event.target.value)} />
             </div>

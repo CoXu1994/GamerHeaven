@@ -31,7 +31,8 @@ function AllGames() {
         
         if (filteredData.length > 0) { 
             return (
-                <>
+                <>  
+                    
                     <div className="slider__wrap">
                         <h2 className="slider__title">{headertxt}</h2>
                         <section className="slider">
@@ -55,7 +56,8 @@ function AllGames() {
                                 )
                             })}
                         </section>
-                    </div>            
+                    </div> 
+                               
                 </>            
             )
         }
@@ -64,7 +66,9 @@ function AllGames() {
 
   return (
     <>  
+        
         <div className="searchbar__box">
+        <p className="disclaimer">All data and images comes from RAWG. <a className="page_link" href="https://rawg.io/apidocs">Find more at https://rawg.io/apidocs </a></p>
             <label className="searchbar__title" htmlFor="search">Find the game</label>
             <input className="searchbar" type="text" id="search" value={searchGame} onChange={(event) => setSearchGame(event.target.value)} />
         </div>

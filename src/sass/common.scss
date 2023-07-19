@@ -2,7 +2,11 @@
 @use "./variables.scss" as *;
 
 //Game box design
-
+.disclaimer {
+    text-align: center;
+    padding: 0 14px;
+    margin-bottom: 10px;
+}
 .game {
         &__container {
             margin-inline: auto;
