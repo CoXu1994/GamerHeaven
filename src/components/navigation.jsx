@@ -20,7 +20,7 @@ export default function NavBar() {
         <AppBar position="fixed" className="nav__box" sx={{bgcolor: "black"}}>
           <Toolbar sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
             <Link className='nav__link' to= "/">
-              <span className="nav__title icon-gamepad">GamerHaven</span>
+              <span className="nav__title icon-gamepad">GamerHeaven</span>
             </Link>
             <IconButton 
               edge="start"
