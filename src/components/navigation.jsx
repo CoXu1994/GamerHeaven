@@ -5,7 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
-import { Drawer, ListItemButton, ListItemText } from '@mui/material';
+import { Drawer, ListItemButton} from '@mui/material';
 import { useState } from 'react';
 import "../sass/navigation.scss";
 
@@ -19,7 +19,7 @@ export default function NavBar() {
       <Box>
         <AppBar position="fixed" className="nav__box" sx={{bgcolor: "black"}}>
           <Toolbar sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-            <Link className=""style={{color: "white", textDecoration: "none",mr: 2, cursor: "pointer"}} to= "/">
+            <Link className='nav__link' to= "/">
               <span className="nav__title icon-gamepad">GamerHaven</span>
             </Link>
             <IconButton 

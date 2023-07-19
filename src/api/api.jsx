@@ -1,7 +1,7 @@
 
 
 export async function getAllGamesApi(pageNumber) {
-    const response = await fetch(`https://api.rawg.io/api/games?key=65f7e9f0f2c14d05b7934079b49af787&page=${pageNumber}&page_size=10` );
+    const response = await fetch(`https://api.rawg.io/api/games?key=65f7e9f0f2c14d05b7934079b49af787&page=${pageNumber}&page_size=20` );
     return response.json();
 }
 export async function getGameApi(id) {
@@ -14,8 +14,8 @@ export async function getCategoryGamesApi(category, pageNumber) {
     return response.json();
 }
 
-export async function getByTitleGamesApi(title, pageNumber) {
-    const response = await fetch(`https://api.rawg.io/api/games?search=${title}&key=65f7e9f0f2c14d05b7934079b49af787&page=${pageNumber}&page_size=10` );
+export async function getByTitleGamesApi(title) {
+    const response = await fetch(`https://api.rawg.io/api/games?search=${title}&key=65f7e9f0f2c14d05b7934079b49af787` );
     return response.json();
 }
 

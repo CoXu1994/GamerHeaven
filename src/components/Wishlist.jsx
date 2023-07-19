@@ -120,8 +120,8 @@ return (
                                 <img className="game__image" src={image}/>
                             </Link>
                             <div className="game__meta">
-                                <span class="game__title__metacritic">Metacritic score: </span> 
-                                <span class="game__score">{metacritic}</span>
+                                <span className="game__title__metacritic">Metacritic score: </span> 
+                                <span className="game__score">{metacritic}</span>
                             </div>
                             <button  className="btn" onClick={() => removeFromWishList(game)}>
                                 <span className="btn__icon icon-cancel-squared"></span>

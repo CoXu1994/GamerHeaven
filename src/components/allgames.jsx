@@ -16,12 +16,13 @@ function AllGames() {
   const [searchGame, setSearchGame] = useState("");
 
   useEffect(() => {
-       getAllGamesApi(1).then((data) => setGames(data.results))
-       getBestRatedGamesApi(1).then((data) => setBestRated(data.results))
+        const randomPage = Math.round(Math.random()* 5)
+       getAllGamesApi(randomPage).then((data) => setGames(data.results))
+       getBestRatedGamesApi(randomPage).then((data) => setBestRated(data.results))
        getNewGamesApi(1).then((data) => setNewGames(data.results))
-       getPlatformApi(4, 1).then((data) => setPlatformPC(data.results))
-       getPlatformApi(1, 1).then((data) => setPlatformXbox(data.results))
-       getPlatformApi(18, 1).then((data) => setPlatformPSN(data.results))
+       getPlatformApi(4, randomPage).then((data) => setPlatformPC(data.results))
+       getPlatformApi(1, randomPage).then((data) => setPlatformXbox(data.results))
+       getPlatformApi(18, randomPage).then((data) => setPlatformPSN(data.results))
 
   }, [])
   
@@ -36,23 +37,22 @@ function AllGames() {
                         <section className="slider">
                             {filteredData.map((game) => {
                                 const {id, name, metacritic, background_image} = game;
-                                console.log(game)
                                 return  (
-                                        <div className="game__container" key={id}>
-                                            <h3 className="game__title">{name}</h3>
-                                            <Link className="link" to={`/gameCard/${id}`}>
-                                                <img className="game__image" src={background_image}/>
-                                            </Link>
-                                            <div className="game__meta">
-                                                <span class="game__title__metacritic">Metacritic score: </span> 
-                                                <span class="game__score">{metacritic}</span>
-                                            </div>
-                                            <button  className="btn" onClick={() => AddToWishList(game)}>
-                                                <span className="btn__icon icon-plus-squared"></span>
-                                                <span className="btn__txt">Add to Wishlist</span>
-                                            </button>
+                                    <div className="game__container" key={id}>
+                                        <h3 className="game__title">{name}</h3>
+                                        <Link className="link" to={`/gameCard/${id}`}>
+                                            <img className="game__image" src={background_image}/>
+                                        </Link>
+                                        <div className="game__meta">
+                                            <span className="game__title__metacritic">Metacritic score: </span> 
+                                            <span className="game__score">{metacritic}</span>
                                         </div>
-                                        )
+                                        <button  className="btn" onClick={() => AddToWishList(game)}>
+                                            <span className="btn__icon icon-plus-squared"></span>
+                                            <span className="btn__txt">Add to Wishlist</span>
+                                        </button>
+                                    </div>
+                                )
                             })}
                         </section>
                     </div>            

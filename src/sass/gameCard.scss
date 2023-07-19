@@ -1,4 +1,5 @@
 @use "./mixins.scss" as *;
+@use "./variables.scss" as *;
 
 .gameCard {
     &__container {
@@ -27,11 +28,11 @@
 
         }
         &--description {
-        background-color: rgba(255,255,255, 0.125); 
+        background-color: $bgc-color; 
         border-radius: 5px;
         min-width: 360px;
         max-width: 767px; 
-        color: rgb(255,255,255); 
+        color: $primary-color; 
         padding: 6px 10px; 
         margin-top: 10px;
 
@@ -56,8 +57,7 @@
             margin-top: 15px; 
             width: 360px;
             padding: 10px;
-            background-color: rgba(255,255,255, 0.125); 
-            font-family: 'Tektur', cursive;
+            background-color: $bgc-color; 
 
             @include tablet {
                 margin-top: 20px;
@@ -90,13 +90,11 @@
         }
     }
     &__title--game {
-        background-color: rgba(255,255,255, 0.125);
+        background-color: $bgc-color;
         border-radius: 5px; 
         width: 360px; 
         text-align: center; 
-        color: rgb(255,255,255);
         padding: 1px 10px; 
-        box-sizing: border-box;
         margin-top: 15px;
 
          @include tablet {
@@ -114,7 +112,6 @@
         
     }
     &__title {
-        font-family: 'Tektur', cursive;
         font-size: 22px;
         font-weight: 600;
 
@@ -128,10 +125,9 @@
     &__description {
         &__title {
             display: block;
-            border-bottom: 1px solid white;
+            border-bottom: $primary-border;
             font-size: 20px;
             line-height: 2em;
-            font-family: 'Tektur', cursive;
             font-weight: 500;
 
             @include tablet {
@@ -144,12 +140,10 @@
         }
         &__txt {
             overflow: auto;
-            height: 150px;
-            color: white;
+            height: 300px;
             margin-top: 10px;
-            font-family: 'Tektur', cursive;
             font-weight: 400;
-            font-size: 14px;
+            font-size: 18px;
             padding-bottom: 6px;
 
             @include tablet {
@@ -173,19 +167,17 @@
         &__title {
             font-weight: bold;
             font-size: 20px;
-            color: white; 
-            border-bottom: 1px solid white; 
+            border-bottom: $primary-border; 
             line-height: 2em;
             @include tablet {
                 font-size: 24px;
             }
             @include desktop {
                font-size: 28px;
-               border-bottom: 2px solid white;
+               border-bottom: $secondary-border;
             }
         }
         &__rate {
-            color: white; 
             margin-top: 10px;
 
             @include tablet {
@@ -207,8 +199,7 @@
         &__title {
             font-weight: bold;
             font-size: 20px;
-            color: white;
-            border-bottom: 1px solid white;
+            border-bottom: $primary-border;
             line-height: 2em;
 
             @include tablet {
@@ -216,12 +207,11 @@
             }
             @include desktop {
                font-size: 28px;
-               border-bottom: 2px solid white;
+               border-bottom: $secondary-border;
             }
         }
         &__score {
             font-weight: 400;
-            color: white;
             margin-top: 10px;
 
             @include tablet {
@@ -241,11 +231,11 @@
         margin-top: 15px; 
         width: 360px;
         padding: 10px;
-        background-color: rgba(255,255,255, 0.125); 
-        font-family: 'Tektur', cursive;
+        background-color: $bgc-color; 
+        margin-bottom: 30px;
         @include tablet {
             margin-top: 20px;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
             padding:20px 10px;
             min-width: 760px;
             max-width: 1020px;
@@ -254,15 +244,15 @@
         @include desktop {
             padding:20px 10px;
             margin-top: 25px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             padding: 20px 30px;
             min-width: 1020px;
         }
         &__title {
-            text-align: center; font-weight: bold;
+            text-align: center; 
+            font-weight: bold;
             font-size: 20px;
-            color: white;
-            border-bottom: 1px solid white;
+            border-bottom: $primary-border;
             line-height: 2em;
 
             @include tablet {
@@ -270,7 +260,7 @@
             }
             @include desktop {
                font-size: 28px;
-               border-bottom: 2px solid white;
+               border-bottom: $secondary-border;
             }
         }
         &__txt {
@@ -288,12 +278,3 @@
     }
 }
 
-.button {
-    @include tablet {
-        transform: scale(1.6);
-        
-    }
-    @include desktop {
-        transform: scale(2);
-    }
-}

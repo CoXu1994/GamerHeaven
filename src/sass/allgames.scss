@@ -1,20 +1,21 @@
 @use "./mixins.scss" as *;
+@use "./variables.scss" as *;
 
 ::-webkit-scrollbar {
     height: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: black;
-    border: 1px solid white;
+    background: $secondary-color;
+    border: $primary-border;
     border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb {
     background: rgba(255,255,255, 0.3);
-    border: 1px solid white;
+    border: $primary-border;
     border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: white;
+    background: $primary-color;
    
 }
 .slider {
@@ -35,7 +36,7 @@
         margin-top: 50px;
         margin-bottom: 50px;  
         margin-left: 10px;
-        border-bottom: 2px solid white;
+        border-bottom: $secondary-border;
         line-height: 3em;
         width: 320px;
     }
