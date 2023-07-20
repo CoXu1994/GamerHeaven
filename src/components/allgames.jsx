@@ -17,19 +17,19 @@ function AllGames() {
 
   useEffect(() => {
         const randomPage = Math.round(Math.random()* 5)
-       getAllGamesApi(randomPage).then((data) => setGames(data.results))
-       getBestRatedGamesApi(randomPage).then((data) => setBestRated(data.results))
-       getNewGamesApi(1).then((data) => setNewGames(data.results))
-       getPlatformApi(4, randomPage).then((data) => setPlatformPC(data.results))
-       getPlatformApi(1, randomPage).then((data) => setPlatformXbox(data.results))
-       getPlatformApi(18, randomPage).then((data) => setPlatformPSN(data.results))
+       getAllGamesApi(randomPage).then((data) => setGames(data))
+       getBestRatedGamesApi(randomPage).then((data) => setBestRated(data))
+       getNewGamesApi(1).then((data) => setNewGames(data))
+       getPlatformApi(4, randomPage).then((data) => setPlatformPC(data))
+       getPlatformApi(1, randomPage).then((data) => setPlatformXbox(data))
+       getPlatformApi(18, randomPage).then((data) => setPlatformPSN(data))
 
   }, [])
-  
+    
     function jsxTemplate(data, headertxt) {
-        const filteredData = data.filter((game) => game.name.toLowerCase().includes(searchGame.toLowerCase()))
+        const filteredData = data?.results?.filter((game) => game.name.toLowerCase().includes(searchGame.toLowerCase()))
         
-        if (filteredData.length > 0) { 
+        if (filteredData?.length > 0) { 
             return (
                 <>  
                     
