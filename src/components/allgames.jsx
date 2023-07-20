@@ -106,8 +106,8 @@ function AllGames() {
                             })}  
                         </section>
                         <div className="page__btns">
-                            <button  className ="btn" onClick = {()=> changePage(data,"Previous", type)}>Prev</button>
-                            <button  className ="btn" onClick = {()=> changePage(data, "Next", type)}>next</button>
+                        <button className = "btn" onClick = {()=> changePage(newGames, "Previous", type)}><span className="btn__txt">Previous</span></button>
+                        <button className = "btn" onClick = {()=> changePage(newGames, "Next", type)}><span className="btn__txt">Next</span></button>
                         </div>
                     </div> 
                                

@@ -10,18 +10,28 @@ function Categories() {
     const [newGames, setNewGames] = useState([]);
     const [searchGame, setSearchGame] = useState("");
 
-    function getGamesFromGenre(genre) {
-        getCategoryGamesApi(genre, 1).then((data) => setNewGames(data))
+    async function getGamesFromGenre(genre) {
+        await getCategoryGamesApi(genre, 1).then((data) => setNewGames(data))
     } 
 
     async function changePage(data, direction) {
+        
         if (direction == "Next" && data.next !== null) {
             await getPageAPi(data.next).then((newData) => setNewGames(newData));
+            setBtnNextState("");
+            setBtnState(false);
+            
         } 
+            
         if (direction == "Previous" && data.previous !== null) {
             await getPageAPi(data.previous).then((newData) => setNewGames(newData));
+            setBtnPrevState("");
+            setBtnState(false);
+            
         } 
+        
     } 
+    
 
     return (
         <div>
@@ -75,8 +85,8 @@ function Categories() {
                         
                     </div>
                     <div className="page__btns">
-                        <button  className ="btn" onClick = {()=> changePage(newGames, "Previous")}>Prev</button>
-                        <button  className ="btn" onClick = {()=> changePage(newGames, "Next")}>next</button>
+                        <button className = "btn" onClick = {()=> changePage(newGames, "Previous")}><span className="btn__txt">Previous</span></button>
+                        <button className = "btn" onClick = {()=> changePage(newGames, "Next")}><span className="btn__txt">Next</span></button>
                     </div>
                 </>
             )}
