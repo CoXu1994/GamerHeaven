@@ -131,3 +131,12 @@
         width: 180px;    
     }
 }
+
+.page__btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

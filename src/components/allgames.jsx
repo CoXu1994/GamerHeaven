@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllGamesApi, getBestRatedGamesApi, getNewGamesApi, getPlatformApi,} from "../api/api";
+import { getAllGamesApi, getBestRatedGamesApi, getNewGamesApi, getPlatformApi,getPageAPi} from "../api/api";
 import { Link } from "react-router-dom";
 import { AddToWishList } from "./wishlistOperations";
 import "../sass/allgames.scss";
@@ -17,16 +17,65 @@ function AllGames() {
 
   useEffect(() => {
         const randomPage = Math.round(Math.random()* 5)
-       getAllGamesApi(randomPage).then((data) => setGames(data))
-       getBestRatedGamesApi(randomPage).then((data) => setBestRated(data))
+       getAllGamesApi(1).then((data) => setGames(data))
+       getBestRatedGamesApi(1).then((data) => setBestRated(data))
        getNewGamesApi(1).then((data) => setNewGames(data))
-       getPlatformApi(4, randomPage).then((data) => setPlatformPC(data))
-       getPlatformApi(1, randomPage).then((data) => setPlatformXbox(data))
-       getPlatformApi(18, randomPage).then((data) => setPlatformPSN(data))
+       getPlatformApi(4, 1).then((data) => setPlatformPC(data))
+       getPlatformApi(1, 1).then((data) => setPlatformXbox(data))
+       getPlatformApi(18, 1).then((data) => setPlatformPSN(data))
 
   }, [])
+
+  async function changePage(data, direction, type) {
+    if (direction == "Next" && data.next !== null ) {
+        switch(type) {
+            case "new":
+                await getPageAPi(data.next).then((newData) => setNewGames(newData))
+                break;
+            case "popular": 
+                await getPageAPi(data.next).then((newData) => setGames(newData))
+                break;
+            case "best" :
+                await getPageAPi(data.next).then((newData) => setBestRated(newData))
+                break;
+            case "pc":
+                await getPageAPi(data.next).then((newData) => setPlatformPC(newData))
+                break;
+            case "psn": 
+                await getPageAPi(data.next).then((newData) => setPlatformPSN(newData))
+                break;
+            case "xbox" :
+                await getPageAPi(data.next).then((newData) => setPlatformXbox(newData))
+                break;
+        
+       }
+    } 
+    if (direction == "Previous" && data.previous !== null) {
+        switch(type) {
+            case "new":
+                await getPageAPi(data.previous).then((newData) => setNewGames(newData))
+                break;
+            case "popular": 
+                await getPageAPi(data.previous).then((newData) => setGames(newData))
+                break;
+            case "best" :
+                await getPageAPi(data.previous).then((newData) => setBestRated(newData))
+                break;
+            case "pc":
+                await getPageAPi(data.previous).then((newData) => setPlatformPC(newData))
+                break;
+            case "psn": 
+                await getPageAPi(data.previous).then((newData) => setPlatformPSN(newData))
+                break;
+            case "xbox" :
+                await getPageAPi(data.previous).then((newData) => setPlatformXbox(newData))
+                break;
+        } 
+    }
+} 
+
     
-    function jsxTemplate(data, headertxt) {
+    function jsxTemplate(data, headertxt, type ) {
         const filteredData = data?.results?.filter((game) => game.name.toLowerCase().includes(searchGame.toLowerCase()))
         
         if (filteredData?.length > 0) { 
@@ -54,8 +103,12 @@ function AllGames() {
                                         </button>
                                     </div>
                                 )
-                            })}
+                            })}  
                         </section>
+                        <div className="page__btns">
+                            <button  className ="btn" onClick = {()=> changePage(data,"Previous", type)}>Prev</button>
+                            <button  className ="btn" onClick = {()=> changePage(data, "Next", type)}>next</button>
+                        </div>
                     </div> 
                                
                 </>            
@@ -73,17 +126,17 @@ function AllGames() {
             <input className="searchbar" type="text" id="search" value={searchGame} onChange={(event) => setSearchGame(event.target.value)} />
         </div>
         
-        {jsxTemplate(newGames, "New games")}
-        {jsxTemplate(games, "Popular games")}
-        {jsxTemplate(bestRated, "Best rated games")}
-        {jsxTemplate(platformPC, "Play on PC")}
-        {jsxTemplate(platformPSN, "Play on Playstation")}
-        {jsxTemplate(platformXbox, "Play on Xbox")}
+        {jsxTemplate(newGames, "New games", "new")}
+        {jsxTemplate(games, "Popular games", "popular")}
+        {jsxTemplate(bestRated, "Best rated games", "best")}
+        {jsxTemplate(platformPC, "Play on PC", "pc")}
+        {jsxTemplate(platformPSN, "Play on Playstation", "psn")}
+        {jsxTemplate(platformXbox, "Play on Xbox", "xbox")}
     </>
   )
 }
 
-export default AllGames
+export default AllGames;
 
 
 
