@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import { getGameApi } from "../api/api";
 import { useState, useEffect } from "react";
-import { AddToWishList } from "./wishlistOperations";
+import { AddToWishList } from "./WishlistOperations";
 import "../sass/gameCard.scss";
 import "../sass/common.scss";
 function GameCard() {
@@ -14,7 +14,7 @@ function GameCard() {
    useEffect(() => {
     getGameDetails(gameId)
    }, [gameId])
-   console.log(game)
+
    if (!game) {
     return <div>Loading...</div>
    }

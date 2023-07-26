@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getCategoryGamesApi, getPageAPi } from "../api/api";
 import { Link } from "react-router-dom";
-import { AddToWishList } from "./wishlistOperations";
+import { AddToWishList } from "./WishlistOperations";
 import "../sass/categories.scss";
 import "../sass/common.scss";
 

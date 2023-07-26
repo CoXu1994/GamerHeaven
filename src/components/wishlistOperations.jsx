@@ -11,10 +11,7 @@ export async function AddToWishList({name, background_image, metacritic, id}) {
         .insert([{name: name, image: background_image, metacritic: metacritic, game_id: id}])
         
     if (error) {
-        console.log("U missing something")
-    }
-    if (data) {
-        console.log(data)
+        setFetchError("U missing something");
     }
     
 }

@@ -20,7 +20,6 @@ function WishList() {
             if(error) {
                 setFetchError("Nie udałosię pobrać danych z serwera")
                 setWishedGames(null);
-                console.log(error)
             }
 
             if(data) {
@@ -32,8 +31,6 @@ function WishList() {
 
         fetchList()
     }, [orderBy])
-
-    console.log(wishedGames)
 
     async function removeFromWishList({name}) {
     
@@ -48,7 +45,7 @@ function WishList() {
             .select()
             
         if (error) {
-            console.log("U missing something")
+            setFetchError("U missing something");
         }
             
         setWishedGames(prevWishedGames => prevWishedGames.filter(game => game.name !== name))
