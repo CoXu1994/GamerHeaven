@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { getCategoryGamesApi, getPageAPi } from "../api/api";
-import { Link } from "react-router-dom";
-import { AddToWishList } from "./WishlistOperations";
+import GameTemplate from "./GameTemplate";
 import "../sass/categories.scss";
 import "../sass/common.scss";
 
@@ -11,23 +10,17 @@ function Categories() {
     const [searchGame, setSearchGame] = useState("");
 
     async function getGamesFromGenre(genre) {
-        await getCategoryGamesApi(genre, 1).then((data) => setNewGames(data))
+        await getCategoryGamesApi(genre).then((data) => setNewGames(data))
     } 
 
     async function changePage(data, direction) {
         
         if (direction == "Next" && data.next !== null) {
-            await getPageAPi(data.next).then((newData) => setNewGames(newData));
-            setBtnNextState("");
-            setBtnState(false);
-            
+            await getPageAPi(data.next).then((newData) => setNewGames(newData));    
         } 
             
         if (direction == "Previous" && data.previous !== null) {
-            await getPageAPi(data.previous).then((newData) => setNewGames(newData));
-            setBtnPrevState("");
-            setBtnState(false);
-            
+            await getPageAPi(data.previous).then((newData) => setNewGames(newData));  
         } 
         
     } 
@@ -65,20 +58,7 @@ function Categories() {
                                 const {id,name,metacritic,background_image} = game;
                                 return (
                                 
-                                    <div className="game__container" key={id}>
-                                        <h3 className="game__title">{name}</h3>
-                                        <Link className="link" to={`/gameCard/${id}`}>
-                                            <img className="game__image" src={background_image}/>
-                                        </Link>
-                                        <div className="game__meta">
-                                            <span className="game__title__metacritic">Metacritic score: </span> 
-                                            <span className="game__score">{metacritic}</span>
-                                        </div>
-                                        <button  className="btn" onClick={() => AddToWishList(game)}>
-                                            <span className="btn__icon icon-plus-squared"></span>
-                                            <span className="btn__txt">Add to Wishlist</span>
-                                        </button>
-                                    </div>
+                                    <GameTemplate game={game} id={id} name={name} metacritic={metacritic} background_image={background_image} />
                                 )
                             }
                         )}

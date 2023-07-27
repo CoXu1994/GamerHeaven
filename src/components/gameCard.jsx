@@ -1,25 +1,23 @@
 import { useParams } from "react-router-dom"
-import { getGameApi } from "../api/api";
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { AddToWishList } from "./WishlistOperations";
 import "../sass/gameCard.scss";
 import "../sass/common.scss";
+import { getGameApi } from "../api/api";
+
 function GameCard() {
-   const {gameId} = useParams();
-   const [game, setGame] = useState(null)
+    const {gameId} = useParams(); 
 
-   function getGameDetails(id) {
-        getGameApi(id).then((data) => setGame(data) )
-   }
-   useEffect(() => {
-    getGameDetails(gameId)
-   }, [gameId])
+    const { isLoading, error, data } = useQuery({
+        queryKey: ['gameData', gameId],
+        queryFn: () => getGameApi(gameId),
+        });
+    if (isLoading) return 'Loading...';
+    
+    if (error) return 'An error has occurred: ' + error.message;
+    
+    const {id, name, description_raw: description , esrb_rating, metacritic, platforms, background_image : image} = data;
 
-   if (!game) {
-    return <div>Loading...</div>
-   }
-
-   const {id, name, description_raw: description , esrb_rating, metacritic, platforms, background_image : image} = game;
     return (
 
         <div className="gameCard__container--main" key={id} >
@@ -62,7 +60,7 @@ function GameCard() {
                 </div>      
             </div>
             <p className="disclaimer">All data and images comes from RAWG. <a className="page_link" href="https://rawg.io/apidocs">Find more at https://rawg.io/apidocs </a></p>               
-            <button className="btn" onClick={() => AddToWishList(game)}>
+            <button className="btn" onClick={() => AddToWishList(data)}>
                 <span className="btn__icon icon-plus-squared"></span>
                 <span className="btn__txt">Add to Wishlist</span>
             </button>

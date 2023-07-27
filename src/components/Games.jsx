@@ -15,12 +15,12 @@ function Games() {
   const [searchGame, setSearchGame] = useState("");
 
   useEffect(() => {
-       getAllGamesApi(1).then((data) => setGames(data))
-       getBestRatedGamesApi(1).then((data) => setBestRated(data))
-       getNewGamesApi(1).then((data) => setNewGames(data))
-       getPlatformApi(4, 1).then((data) => setPlatformPC(data))
-       getPlatformApi(1, 1).then((data) => setPlatformXbox(data))
-       getPlatformApi(18, 1).then((data) => setPlatformPSN(data))
+       getAllGamesApi().then((data) => setGames(data))
+       getBestRatedGamesApi().then((data) => setBestRated(data))
+       getNewGamesApi().then((data) => setNewGames(data))
+       getPlatformApi(4).then((data) => setPlatformPC(data))
+       getPlatformApi(1).then((data) => setPlatformXbox(data))
+       getPlatformApi(18).then((data) => setPlatformPSN(data))
 
   }, [])
 

@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { AddToWishList } from "./WishlistOperations";
+import GameTemplate from "./GameTemplate";
 
 
 
@@ -16,20 +15,7 @@ function GamesList({data, headertxt, type, search, changePage}) {
                         {filteredData.map((game) => {
                             const {id, name, metacritic, background_image} = game;
                             return  (
-                                <div className="game__container" key={id}>
-                                    <h3 className="game__title">{name}</h3>
-                                    <Link className="link" to={`/gameCard/${id}`}>
-                                        <img className="game__image" src={background_image}/>
-                                    </Link>
-                                    <div className="game__meta">
-                                        <span className="game__title__metacritic">Metacritic score: </span> 
-                                        <span className="game__score">{metacritic}</span>
-                                    </div>
-                                    <button  className="btn" onClick={() => AddToWishList(game)}>
-                                        <span className="btn__icon icon-plus-squared"></span>
-                                        <span className="btn__txt">Add to Wishlist</span>
-                                    </button>
-                                </div>
+                               <GameTemplate game={game} id={id} name={name} metacritic={metacritic} background_image={background_image} />
                             )
                         })}  
                     </section>
