@@ -15,7 +15,7 @@ function GamesList({data, headertxt, type, search, changePage}) {
                         {filteredData.map((game) => {
                             const {id, name, metacritic, background_image} = game;
                             return  (
-                               <GameTemplate game={game} id={id} name={name} metacritic={metacritic} background_image={background_image} />
+                               <GameTemplate key={id} game={game} id={id} name={name} metacritic={metacritic} background_image={background_image} />
                             )
                         })}  
                     </section>
