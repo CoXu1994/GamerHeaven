@@ -1,0 +1,51 @@
+@use "./mixins.scss" as *;
+@use "./variables.scss" as *;
+
+::-webkit-scrollbar {
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: $secondary-color;
+    border: $primary-border;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255, 0.3);
+    border: $primary-border;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: $primary-color;
+   
+}
+.slider {
+    display: flex;
+    gap: 20px;
+    overflow: auto;
+    height: 500px;
+
+    &__wrap {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+        margin-bottom: 20px;
+    }
+
+    &__title {
+        font-size: 30px;
+        margin-top: 50px;
+        margin-bottom: 50px;  
+        margin-left: 10px;
+        border-bottom: $secondary-border;
+        line-height: 3em;
+        width: 320px;
+    }
+    
+    
+}
+
+
+
+.pagination {
+    align-self: flex-start;
+}

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../sass/wishlist.scss";
 import "../sass/common.scss";
+// import Navigation from "./Navigation";
 
 function WishList() {
     const [fetchError, setFetchError] = useState(null);
@@ -20,7 +21,6 @@ function WishList() {
             if(error) {
                 setFetchError("Nie udałosię pobrać danych z serwera")
                 setWishedGames(null);
-                console.log(error)
             }
 
             if(data) {
@@ -32,8 +32,6 @@ function WishList() {
 
         fetchList()
     }, [orderBy])
-
-    console.log(wishedGames)
 
     async function removeFromWishList({name}) {
     
@@ -48,7 +46,7 @@ function WishList() {
             .select()
             
         if (error) {
-            console.log("U missing something")
+            setFetchError("U missing something");
         }
             
         setWishedGames(prevWishedGames => prevWishedGames.filter(game => game.name !== name))
@@ -71,9 +69,9 @@ function WishList() {
     const [searchGame, setSearchGame] = useState("");
     
 return (
-<>
-
-
+    <>
+            
+        {/* <Navigation /> */}
         {wishedGames.length == 0 && (<p className="noGames" >No games on the list {`:(`}</p>)}
         <section className="wishlist__container">
             <div className="btn__container">
@@ -135,7 +133,7 @@ return (
             </div>
            
         </section>
-</>
+    </>
     ) 
     
 }

@@ -1,4 +1,4 @@
-import AllGames from "./components/allgames";
+import Games from "./components/Games";
 import "./App.css"
 import './css/fontello.css'
 function App() {
@@ -6,7 +6,7 @@ function App() {
   
   return (
     <>
-      <AllGames />
+      <Games />
     </>
   )
 }
