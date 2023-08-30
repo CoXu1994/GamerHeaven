@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../sass/wishlist.scss";
 import "../sass/common.scss";
-// import Navigation from "./Navigation";
 
 function WishList() {
     const [fetchError, setFetchError] = useState(null);
@@ -70,8 +69,6 @@ function WishList() {
     
 return (
     <>
-            
-        {/* <Navigation /> */}
         {wishedGames.length == 0 && (<p className="noGames" >No games on the list {`:(`}</p>)}
         <section className="wishlist__container">
             <div className="btn__container">

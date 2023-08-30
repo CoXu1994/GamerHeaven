@@ -3,7 +3,6 @@ import { getAllGamesApi, getBestRatedGamesApi, getNewGamesApi, getPlatformApi,ge
 import "../sass/games.scss";
 import "../sass/common.scss";
 import GamesList from "./GamesList";
-import Navigation from "./Navigation";
 
 function Games() {
   const [newGames, setNewGames] = useState([]);
@@ -74,7 +73,6 @@ function Games() {
 
   return (
     <>  
-        <Navigation/>
         <div className="searchbar__box">
         <p className="disclaimer">All data and images comes from RAWG. <a className="page_link" href="https://rawg.io/apidocs">Find more at https://rawg.io/apidocs </a></p>
             <label className="searchbar__title" htmlFor="search">Find the game</label>

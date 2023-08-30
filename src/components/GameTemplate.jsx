@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { AddToWishList } from "./WishlistOperations";
+import { addToWishList } from "./wishlistOperations";
 
 function GameTemplate({game,id, name, background_image, metacritic}) {
 
@@ -13,7 +13,7 @@ function GameTemplate({game,id, name, background_image, metacritic}) {
                 <span className="game__title__metacritic">Metacritic score: </span> 
                 <span className="game__score">{metacritic}</span>
             </div>
-            <button  className="btn" onClick={() => AddToWishList(game)}>
+            <button  className="btn" onClick={() => addToWishList(game)}>
                 <span className="btn__icon icon-plus-squared"></span>
                 <span className="btn__txt">Add to Wishlist</span>
             </button>

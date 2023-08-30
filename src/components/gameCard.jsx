@@ -1,10 +1,9 @@
 import { useParams } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query";
-import { addToWishList } from "./WishlistOperations";
+import { addToWishList } from "./wishlistOperations";
 import "../sass/gameCard.scss";
 import "../sass/common.scss";
 import { getGameApi } from "../api/api";
-import Navigation from "./Navigation";
 function GameCard() {
     const {gameId} = useParams(); 
 
@@ -19,8 +18,7 @@ function GameCard() {
     const {id, name, description_raw: description , esrb_rating, metacritic, platforms, background_image : image} = data;
 
     return (
-        <> 
-            <Navigation/> 
+        <>  
             <div className="gameCard__container--main" key={id} >
                 <img className="gameCard__image" src={image} alt="image_of_game"/>
 
